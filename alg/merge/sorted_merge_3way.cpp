@@ -9,13 +9,32 @@ sorted_merge_3way(
     const int *list_c, int nc,
     int *list_abc)
 {
+  int i = 0, j = 0, k = 0, m = 0;
 
-  /* 
 
-   Entrar coom aqui 
-   <++>
-   
-  */
+  while (i < na || j < nb || k < nc) {
+    int val_a = (i < na) ? list_a[i] : __INT_MAX__;
+    int val_b = (j < nb) ? list_b[j] : __INT_MAX__;
+    int val_c = (k < nc) ? list_c[k] : __INT_MAX__;
+    
+    if (val_a <= val_b && val_a <= val_c) {
+      list_abc[m++] = val_a;
+      i++;
+     }else if (val_b <= val_a && val_b <= val_c) {
+        list_abc[m++] = val_b;
+        j++;
+     }else {
+        list_abc[m++] = val_c;
+        k++;
+     }
+    if(m!=1)
+    {
+       if(list_abc[m-1]<list_abc[m-2])
+       {
+	 return false;
+       }
+    }
+    }
 
-  return false; // stub
+  return true;
 }
